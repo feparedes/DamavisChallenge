@@ -19,9 +19,12 @@ def numberOfAvailableDifferentPaths(board, snake, depth):
             Devuelve el numero de posibles caminos que puede hacer la serpiente de longitud depth.
     """
     if depth==0:    # Caso base
+
         # Si se ha llegado hasta este punto entonces ha encontrado un posible camino y devolveremos 1
         return 1
     else:           # Caso recursivo
+
+        res = 0
 
         # Implementamos una funcion lambda que comprueba si la serpiente se ha salido de los bordes
         out_of_border = lambda board,snake: snake[0][0] < 0 or snake[0][0] >= board[0] or snake[0][1] < 0 or snake[0][1] >= board[1]
@@ -56,17 +59,36 @@ def numberOfAvailableDifferentPaths(board, snake, depth):
         usnake.pop(-1) # eliminamos la coordenada de la cola
         usnake.insert(0,(snake[0][0]-1, snake[0][1])) # Restamos 1 a la segunda componente
 
-    print(out_of_border((4,3),[(2,0),(1,2)]))
-    print(self_intersection([(2,2),(3,2),(3,1)],[(3,1),(2,2),(2,2)]))
+        # Si los movimientos cumplen las restricciones entonces realizamos la llamada recursiva
+        # Empleamos la tecnica de divide y venceras diviendo el problema en 4 subproblemas
+
+        # Comprobamos que el movimiento hacia la izquierda esta permitido
+        if not out_of_border(board, lsnake) and not self_intersection(snake, lsnake):
+            res += numberOfAvailableDifferentPaths(board, lsnake, depth-1)
+
+        # Comprobamos que el movimiento hacia la derecha esta permitido
+        if not out_of_border(board, rsnake) and not self_intersection(snake, rsnake):
+            res += numberOfAvailableDifferentPaths(board, rsnake, depth-1)
+
+        # Comprobamos que el movimiento hacia abajo esta permitido
+        if not out_of_border(board, dsnake) and not self_intersection(snake, dsnake):
+            res += numberOfAvailableDifferentPaths(board, dsnake, depth-1)
+
+        # Comprobamos que el movimiento hacia arriba esta permitido
+        if not out_of_border(board, usnake) and not self_intersection(snake, usnake):
+            res += numberOfAvailableDifferentPaths(board, usnake, depth-1)
+
+        print(out_of_border((4,3),[(2,0),(1,2)]))
+        print(self_intersection([(2,2),(3,2),(3,1)],[(3,1),(2,2),(2,2)]))
 
 
-    return 1
+        return res
 
 
 if __name__=='__main__':
-    board=(4,3)
-    snake=[(2,2), (3,2), (3,1), (3,0), (2,0), (1,0), (0,0)]
-    depth=3
+    # board=(4,3)
+    # snake=[(2,2), (3,2), (3,1), (3,0), (2,0), (1,0), (0,0)]
+    # depth=3
     number_of_available_different_paths = numberOfAvailableDifferentPaths(board, snake, depth)
     print('numberOfAvailableDifferentPaths(board, snake, depth) =',number_of_available_different_paths)
     print(board,'\n')
