@@ -29,4 +29,9 @@ recursivo llamamos la funcion cada uno con un movimiento distinto posible y
 decrementando en uno la profundidad (depth)
 
 Dado que se deben emplear arrays vamos a trabajar con Tuplas, que es un 
-tipo de array en python.
+tipo de array en python. Creamos dos funciones lambda para las restricciones,
+una de ellas comprobará que la serpiente se encuentra dentro del tablero y
+la otra que la serpiente no se ha intersectado consigo misma cuando ha
+realizado un movimiento. Para realizar un movimiento con la serpiente solo
+debemos eliminar la cola y añadir una nueva coordenada que indique la nueva
+posicion de la cabeza de la serpiente.
