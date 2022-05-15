@@ -78,33 +78,29 @@ def numberOfAvailableDifferentPaths(board, snake, depth):
         if not out_of_border(board, usnake) and not self_intersection(snake, usnake):
             res += numberOfAvailableDifferentPaths(board, usnake, depth-1)
 
-        print(out_of_border((4,3),[(2,0),(1,2)]))
-        print(self_intersection([(2,2),(3,2),(3,1)],[(3,1),(2,2),(2,2)]))
-
 
         return res
 
 
 if __name__=='__main__':
-    # board=(4,3)
-    # snake=[(2,2), (3,2), (3,1), (3,0), (2,0), (1,0), (0,0)]
-    # depth=3
+
+    # Salida del test 1
+    board=(4,3)
+    snake=[(2,2), (3,2), (3,1), (3,0), (2,0), (1,0), (0,0)]
+    depth=3
     number_of_available_different_paths = numberOfAvailableDifferentPaths(board, snake, depth)
     print('numberOfAvailableDifferentPaths(board, snake, depth) =',number_of_available_different_paths)
-    print(board,'\n')
-    a=[1,2,3,4,5]
-    a.pop(-1)
-    print(a)
-    # board1=[(1,2),(3,2), (1, 2)]
-    # print(board1)
-    # board3 = set(board1)
-    # print(board3)
-    # print(len(board3)!=len(board1))
-
-    snake2=[(2,2), (3,2), (3,1), (3,0), (2,0), (1,0), (0,0)]
-    print(snake2)
-    snake3 = snake2.copy()
-    snake3.pop(-1)
-    snake3.insert(0,(snake2[0][0], snake2[0][1]-1))
-    print(snake3)
     
+    # Salida del test 2
+    board = (2,3)
+    snake = [(0,2), (0,1), (0,0), (1,0), (1,1), (1,2)]
+    depth=10
+    number_of_available_different_paths = numberOfAvailableDifferentPaths(board, snake, depth)
+    print('numberOfAvailableDifferentPaths(board, snake, depth) =',number_of_available_different_paths)
+
+    # Salida del test 3
+    board=(10,10)
+    snake=[(5,5), (5,4), (4,4), (4,5)]
+    depth=4
+    number_of_available_different_paths = numberOfAvailableDifferentPaths(board, snake, depth)
+    print('numberOfAvailableDifferentPaths(board, snake, depth) =',number_of_available_different_paths)
