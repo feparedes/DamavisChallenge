@@ -24,6 +24,7 @@ def numberOfAvailableDifferentPaths(board, snake, depth):
         return 1
     else:           # Caso recursivo
 
+        # Resultado
         res = 0
 
         # Implementamos una funcion lambda que comprueba si la serpiente se ha salido de los bordes
@@ -77,7 +78,6 @@ def numberOfAvailableDifferentPaths(board, snake, depth):
         # Comprobamos que el movimiento hacia arriba esta permitido
         if not out_of_border(board, usnake) and not self_intersection(snake, usnake):
             res += numberOfAvailableDifferentPaths(board, usnake, depth-1)
-
 
         return res
 
